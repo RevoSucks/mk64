@@ -1,5 +1,5 @@
 
-This repo currently builds: Does not current build.
+This repo currently builds: Does not build.
 
 Stage: Dissasembly
 
