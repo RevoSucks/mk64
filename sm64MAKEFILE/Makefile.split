@@ -1,0 +1,418 @@
+TARGET = sm64.j
+LD_SCRIPT = $(TARGET).ld
+MIO0_DIR = bin
+TEXTURE_DIR = textures
+GEO_DIR = geo
+LEVEL_DIR = levels
+
+MUSIC_DIR = music
+
+$(MIO0_DIR)/font_graphics.bin: $(TEXTURE_DIR)/font_graphics.0x00000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x00E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x01E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x02E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x03E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x04E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x05E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06200.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06280.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06300.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06380.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06400.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06480.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06500.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06580.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06600.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06680.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06700.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06780.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06800.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06880.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06900.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06980.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06A00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06A80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06B00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06B80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06C00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06C80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06D00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06D80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06E00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06E80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06F00.rgba16.png $(TEXTURE_DIR)/font_graphics.0x06F80.rgba16.png $(TEXTURE_DIR)/font_graphics.0x07000.rgba16.png $(TEXTURE_DIR)/font_graphics.0x07080.rgba16.png $(TEXTURE_DIR)/font_graphics.0x07100.ia1.png $(TEXTURE_DIR)/font_graphics.0x07110.ia1.png $(TEXTURE_DIR)/font_graphics.0x07120.ia1.png $(TEXTURE_DIR)/font_graphics.0x07130.ia1.png $(TEXTURE_DIR)/font_graphics.0x07140.ia1.png $(TEXTURE_DIR)/font_graphics.0x07150.ia1.png $(TEXTURE_DIR)/font_graphics.0x07160.ia1.png $(TEXTURE_DIR)/font_graphics.0x07170.ia1.png $(TEXTURE_DIR)/font_graphics.0x07180.ia1.png $(TEXTURE_DIR)/font_graphics.0x07190.ia1.png $(TEXTURE_DIR)/font_graphics.0x071A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x071B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x071C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x071D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x071E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x071F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07200.ia1.png $(TEXTURE_DIR)/font_graphics.0x07210.ia1.png $(TEXTURE_DIR)/font_graphics.0x07220.ia1.png $(TEXTURE_DIR)/font_graphics.0x07230.ia1.png $(TEXTURE_DIR)/font_graphics.0x07240.ia1.png $(TEXTURE_DIR)/font_graphics.0x07250.ia1.png $(TEXTURE_DIR)/font_graphics.0x07260.ia1.png $(TEXTURE_DIR)/font_graphics.0x07270.ia1.png $(TEXTURE_DIR)/font_graphics.0x07280.ia1.png $(TEXTURE_DIR)/font_graphics.0x07290.ia1.png $(TEXTURE_DIR)/font_graphics.0x072A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x072B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x072C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x072D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x072E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x072F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07300.ia1.png $(TEXTURE_DIR)/font_graphics.0x07310.ia1.png $(TEXTURE_DIR)/font_graphics.0x07320.ia1.png $(TEXTURE_DIR)/font_graphics.0x07330.ia1.png $(TEXTURE_DIR)/font_graphics.0x07340.ia1.png $(TEXTURE_DIR)/font_graphics.0x07350.ia1.png $(TEXTURE_DIR)/font_graphics.0x07360.ia1.png $(TEXTURE_DIR)/font_graphics.0x07370.ia1.png $(TEXTURE_DIR)/font_graphics.0x07380.ia1.png $(TEXTURE_DIR)/font_graphics.0x07390.ia1.png $(TEXTURE_DIR)/font_graphics.0x073A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x073B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x073C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x073D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x073E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x073F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07400.ia1.png $(TEXTURE_DIR)/font_graphics.0x07410.ia1.png $(TEXTURE_DIR)/font_graphics.0x07420.ia1.png $(TEXTURE_DIR)/font_graphics.0x07430.ia1.png $(TEXTURE_DIR)/font_graphics.0x07440.ia1.png $(TEXTURE_DIR)/font_graphics.0x07450.ia1.png $(TEXTURE_DIR)/font_graphics.0x07460.ia1.png $(TEXTURE_DIR)/font_graphics.0x07470.ia1.png $(TEXTURE_DIR)/font_graphics.0x07480.ia1.png $(TEXTURE_DIR)/font_graphics.0x07490.ia1.png $(TEXTURE_DIR)/font_graphics.0x074A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x074B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x074C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x074D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x074E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x074F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07500.ia1.png $(TEXTURE_DIR)/font_graphics.0x07510.ia1.png $(TEXTURE_DIR)/font_graphics.0x07520.ia1.png $(TEXTURE_DIR)/font_graphics.0x07530.ia1.png $(TEXTURE_DIR)/font_graphics.0x07540.ia1.png $(TEXTURE_DIR)/font_graphics.0x07550.ia1.png $(TEXTURE_DIR)/font_graphics.0x07560.ia1.png $(TEXTURE_DIR)/font_graphics.0x07570.ia1.png $(TEXTURE_DIR)/font_graphics.0x07580.ia1.png $(TEXTURE_DIR)/font_graphics.0x07590.ia1.png $(TEXTURE_DIR)/font_graphics.0x075A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x075B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x075C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x075D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x075E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x075F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07600.ia1.png $(TEXTURE_DIR)/font_graphics.0x07610.ia1.png $(TEXTURE_DIR)/font_graphics.0x07620.ia1.png $(TEXTURE_DIR)/font_graphics.0x07630.ia1.png $(TEXTURE_DIR)/font_graphics.0x07640.ia1.png $(TEXTURE_DIR)/font_graphics.0x07650.ia1.png $(TEXTURE_DIR)/font_graphics.0x07660.ia1.png $(TEXTURE_DIR)/font_graphics.0x07670.ia1.png $(TEXTURE_DIR)/font_graphics.0x07680.ia1.png $(TEXTURE_DIR)/font_graphics.0x07690.ia1.png $(TEXTURE_DIR)/font_graphics.0x076A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x076B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x076C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x076D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x076E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x076F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07700.ia1.png $(TEXTURE_DIR)/font_graphics.0x07710.ia1.png $(TEXTURE_DIR)/font_graphics.0x07720.ia1.png $(TEXTURE_DIR)/font_graphics.0x07730.ia1.png $(TEXTURE_DIR)/font_graphics.0x07740.ia1.png $(TEXTURE_DIR)/font_graphics.0x07750.ia1.png $(TEXTURE_DIR)/font_graphics.0x07760.ia1.png $(TEXTURE_DIR)/font_graphics.0x07770.ia1.png $(TEXTURE_DIR)/font_graphics.0x07780.ia1.png $(TEXTURE_DIR)/font_graphics.0x07790.ia1.png $(TEXTURE_DIR)/font_graphics.0x077A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x077B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x077C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x077D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x077E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x077F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07800.ia1.png $(TEXTURE_DIR)/font_graphics.0x07810.ia1.png $(TEXTURE_DIR)/font_graphics.0x07820.ia1.png $(TEXTURE_DIR)/font_graphics.0x07830.ia1.png $(TEXTURE_DIR)/font_graphics.0x07840.ia1.png $(TEXTURE_DIR)/font_graphics.0x07850.ia1.png $(TEXTURE_DIR)/font_graphics.0x07860.ia1.png $(TEXTURE_DIR)/font_graphics.0x07870.ia1.png $(TEXTURE_DIR)/font_graphics.0x07880.ia1.png $(TEXTURE_DIR)/font_graphics.0x07890.ia1.png $(TEXTURE_DIR)/font_graphics.0x078A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x078B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x078C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x078D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x078E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x078F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07900.ia1.png $(TEXTURE_DIR)/font_graphics.0x07910.ia1.png $(TEXTURE_DIR)/font_graphics.0x07920.ia1.png $(TEXTURE_DIR)/font_graphics.0x07930.ia1.png $(TEXTURE_DIR)/font_graphics.0x07940.ia1.png $(TEXTURE_DIR)/font_graphics.0x07950.ia1.png $(TEXTURE_DIR)/font_graphics.0x07960.ia1.png $(TEXTURE_DIR)/font_graphics.0x07970.ia1.png $(TEXTURE_DIR)/font_graphics.0x07980.ia1.png $(TEXTURE_DIR)/font_graphics.0x07990.ia1.png $(TEXTURE_DIR)/font_graphics.0x079A0.ia1.png $(TEXTURE_DIR)/font_graphics.0x079B0.ia1.png $(TEXTURE_DIR)/font_graphics.0x079C0.ia1.png $(TEXTURE_DIR)/font_graphics.0x079D0.ia1.png $(TEXTURE_DIR)/font_graphics.0x079E0.ia1.png $(TEXTURE_DIR)/font_graphics.0x079F0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A00.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A10.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A20.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A30.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A40.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A50.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A60.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A70.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A80.ia1.png $(TEXTURE_DIR)/font_graphics.0x07A90.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AA0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AB0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AC0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AD0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AE0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07AF0.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B00.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B10.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B20.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B30.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B40.ia1.png $(TEXTURE_DIR)/font_graphics.0x07B50.rgba16.png $(TEXTURE_DIR)/font_graphics.0x07D50.rgba16.png $(TEXTURE_DIR)/font_graphics.0x07F50.rgba16.png $(TEXTURE_DIR)/font_graphics.0x08150.rgba16.png $(TEXTURE_DIR)/font_graphics.0x081D0.rgba16.png $(TEXTURE_DIR)/font_graphics.0x0F258.ia8.png $(TEXTURE_DIR)/font_graphics.0x0F358.ia8.png $(TEXTURE_DIR)/font_graphics.0x0F458.ia8.png $(TEXTURE_DIR)/font_graphics.0x0FC58.ia8.png $(TEXTURE_DIR)/font_graphics.0x10458.ia8.png $(TEXTURE_DIR)/font_graphics.0x11458.ia8.png $(TEXTURE_DIR)/font_graphics.0x11C58.rgba16.png $(TEXTURE_DIR)/font_graphics.0x12458.rgba16.png $(TEXTURE_DIR)/font_graphics.0x12C58.rgba16.png $(TEXTURE_DIR)/font_graphics.0x13458.ia16.png $(TEXTURE_DIR)/font_graphics.0x13C58.rgba16.png $(TEXTURE_DIR)/font_graphics.0x14838.ia8.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/mario.bin: $(TEXTURE_DIR)/mario.0x00090.rgba16.png $(TEXTURE_DIR)/mario.0x01090.rgba16.png $(TEXTURE_DIR)/mario.0x01890.rgba16.png $(TEXTURE_DIR)/mario.0x02090.rgba16.png $(TEXTURE_DIR)/mario.0x02890.rgba16.png $(TEXTURE_DIR)/mario.0x03090.rgba16.png $(TEXTURE_DIR)/mario.0x03890.rgba16.png $(TEXTURE_DIR)/mario.0x04090.rgba16.png $(TEXTURE_DIR)/mario.0x04890.rgba16.png $(TEXTURE_DIR)/mario.0x05090.rgba16.png $(TEXTURE_DIR)/mario.0x05890.rgba16.png $(TEXTURE_DIR)/mario.0x06090.rgba16.png $(TEXTURE_DIR)/mario.0x06890.rgba16.png $(TEXTURE_DIR)/mario.0x07090.rgba16.png $(TEXTURE_DIR)/mario.0x07890.rgba16.png $(TEXTURE_DIR)/mario.0x08090.rgba16.png $(TEXTURE_DIR)/mario.0x09090.rgba16.png $(TEXTURE_DIR)/mario.0x0A090.rgba16.png $(TEXTURE_DIR)/mario.0x0B090.rgba16.png $(TEXTURE_DIR)/mario.0x1CD60.rgba16.png $(TEXTURE_DIR)/mario.0x1D560.rgba16.png $(TEXTURE_DIR)/mario.0x21800.ia16.png $(TEXTURE_DIR)/mario.0x22148.ia16.png $(TEXTURE_DIR)/mario.0x22948.ia16.png $(TEXTURE_DIR)/mario.0x23148.ia16.png $(TEXTURE_DIR)/mario.0x23948.ia16.png $(TEXTURE_DIR)/mario.0x24148.ia16.png $(TEXTURE_DIR)/mario.0x24948.ia16.png $(TEXTURE_DIR)/mario.0x27490.ia16.png $(TEXTURE_DIR)/mario.0x27C90.ia16.png $(TEXTURE_DIR)/mario.0x28490.ia16.png $(TEXTURE_DIR)/mario.0x28C90.ia16.png $(TEXTURE_DIR)/mario.0x29490.ia16.png $(TEXTURE_DIR)/mario.0x29C90.ia16.png $(TEXTURE_DIR)/mario.0x2A5C8.ia16.png $(TEXTURE_DIR)/mario.0x2B5C8.ia16.png $(TEXTURE_DIR)/mario.0x2C5C8.ia16.png $(TEXTURE_DIR)/mario.0x2D5C8.ia16.png $(TEXTURE_DIR)/mario.0x2E5C8.ia16.png $(TEXTURE_DIR)/mario.0x2F5C8.ia16.png $(TEXTURE_DIR)/mario.0x305C8.ia16.png $(TEXTURE_DIR)/mario.0x315C8.ia16.png $(TEXTURE_DIR)/mario.0x32780.rgba16.png $(TEXTURE_DIR)/mario.0x32A88.ia16.png $(TEXTURE_DIR)/mario.0x33288.ia16.png $(TEXTURE_DIR)/mario.0x33A88.ia16.png $(TEXTURE_DIR)/mario.0x34288.ia16.png $(TEXTURE_DIR)/mario.0x34A88.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/yoshiegg_owl_thwomp.bin: $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x00040.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x00A20.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x01E50.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x02650.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x057B8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x05FB8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x067B8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x06FB8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x077B8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x07FB8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x087B8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x08FB8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x09900.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0A900.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0BAA8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0CAA8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0E9C8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0F1C8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x0F9C8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x109C8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x111C8.rgba16.png $(TEXTURE_DIR)/yoshiegg_owl_thwomp.0x113C8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/big_bully.bin: $(TEXTURE_DIR)/big_bully.0x000E0.rgba16.png $(TEXTURE_DIR)/big_bully.0x00468.rgba16.png $(TEXTURE_DIR)/big_bully.0x01468.rgba16.png $(TEXTURE_DIR)/big_bully.0x02468.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bobombs.bin: $(TEXTURE_DIR)/bobombs.0x00078.rgba16.png $(TEXTURE_DIR)/bobombs.0x01078.rgba16.png $(TEXTURE_DIR)/bobombs.0x02078.rgba16.png $(TEXTURE_DIR)/bobombs.0x02878.rgba16.png $(TEXTURE_DIR)/bobombs.0x04878.rgba16.png $(TEXTURE_DIR)/bobombs.0x05078.rgba16.png $(TEXTURE_DIR)/bobombs.0x05878.rgba16.png $(TEXTURE_DIR)/bobombs.0x06078.rgba16.png $(TEXTURE_DIR)/bobombs.0x06478.rgba16.png $(TEXTURE_DIR)/bobombs.0x08478.rgba16.png $(TEXTURE_DIR)/bobombs.0x09478.rgba16.png $(TEXTURE_DIR)/bobombs.0x0FE80.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/sea_creatures_texture.bin: $(TEXTURE_DIR)/sea_creatures_texture.0x00030.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x00830.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x017A0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x01FA0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x02FA0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x037A0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x08ED0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x096D0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x09AD0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0AF20.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0B720.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0B920.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0C120.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0C320.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x0C3A0.rgba16.png $(TEXTURE_DIR)/sea_creatures_texture.0x12848.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/vulture_pokey.bin: $(TEXTURE_DIR)/vulture_pokey.0x00008.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x00808.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x01008.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x02008.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x03008.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x08D40.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x09540.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x09D40.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x0A540.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x0AD40.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x11750.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x11F50.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x12878.rgba16.png $(TEXTURE_DIR)/vulture_pokey.0x13128.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/monkey.bin: $(TEXTURE_DIR)/monkey.0x00040.ia16.png $(TEXTURE_DIR)/monkey.0x00970.rgba16.png $(TEXTURE_DIR)/monkey.0x01170.rgba16.png $(TEXTURE_DIR)/monkey.0x01970.rgba16.png $(TEXTURE_DIR)/monkey.0x02170.rgba16.png $(TEXTURE_DIR)/monkey.0x02970.rgba16.png $(TEXTURE_DIR)/monkey.0x072C0.ia16.png $(TEXTURE_DIR)/monkey.0x07BC0.rgba16.png $(TEXTURE_DIR)/monkey.0x08BC0.rgba16.png $(TEXTURE_DIR)/monkey.0x09BC0.rgba16.png $(TEXTURE_DIR)/monkey.0x0A3C0.rgba16.png $(TEXTURE_DIR)/monkey.0x15808.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/spindrift_penguin_snowman.bin: $(TEXTURE_DIR)/spindrift_penguin_snowman.0x006D0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x00ED0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x016D0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x01ED0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x02DE0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x035E0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x03DE0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x045E0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x04DE0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x055E0.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x08C70.ia16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x09470.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x0A470.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x0B470.rgba16.png $(TEXTURE_DIR)/spindrift_penguin_snowman.0x0BC70.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/checkerboard_question.bin: $(TEXTURE_DIR)/checkerboard_question.0x00018.rgba16.png $(TEXTURE_DIR)/checkerboard_question.0x00818.rgba16.png $(TEXTURE_DIR)/checkerboard_question.0x01C48.ia16.png $(TEXTURE_DIR)/checkerboard_question.0x02C48.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/piano_books.bin: $(TEXTURE_DIR)/piano_books.0x00060.rgba16.png $(TEXTURE_DIR)/piano_books.0x00460.rgba16.png $(TEXTURE_DIR)/piano_books.0x00860.rgba16.png $(TEXTURE_DIR)/piano_books.0x00C60.rgba16.png $(TEXTURE_DIR)/piano_books.0x01060.rgba16.png $(TEXTURE_DIR)/piano_books.0x02570.rgba16.png $(TEXTURE_DIR)/piano_books.0x03060.rgba16.png $(TEXTURE_DIR)/piano_books.0x03860.rgba16.png $(TEXTURE_DIR)/piano_books.0x04060.rgba16.png $(TEXTURE_DIR)/piano_books.0x04460.rgba16.png $(TEXTURE_DIR)/piano_books.0x06AF0.rgba16.png $(TEXTURE_DIR)/piano_books.0x072F0.rgba16.png $(TEXTURE_DIR)/piano_books.0x076F0.rgba16.png $(TEXTURE_DIR)/piano_books.0x07AF0.rgba16.png $(TEXTURE_DIR)/piano_books.0x07EF0.rgba16.png $(TEXTURE_DIR)/piano_books.0x09B40.rgba16.png $(TEXTURE_DIR)/piano_books.0x0AB40.rgba16.png $(TEXTURE_DIR)/piano_books.0x0C288.rgba16.png $(TEXTURE_DIR)/piano_books.0x0CA88.rgba16.png $(TEXTURE_DIR)/piano_books.0x0D288.rgba16.png $(TEXTURE_DIR)/piano_books.0x0D688.rgba16.png $(TEXTURE_DIR)/piano_books.0x0DA88.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/peach_toadstool.bin: $(TEXTURE_DIR)/peach_toadstool.0x00A28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x01228.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x01A28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x02228.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x02A28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x02C28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x02E28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x03628.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x03E28.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x04028.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x1C588.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x1C788.rgba16.png $(TEXTURE_DIR)/peach_toadstool.0x1C988.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/enemy.bin: $(TEXTURE_DIR)/enemy.0x00008.rgba16.png $(TEXTURE_DIR)/enemy.0x00408.rgba16.png $(TEXTURE_DIR)/enemy.0x01408.rgba16.png $(TEXTURE_DIR)/enemy.0x01C08.rgba16.png $(TEXTURE_DIR)/enemy.0x02408.rgba16.png $(TEXTURE_DIR)/enemy.0x05A30.rgba16.png $(TEXTURE_DIR)/enemy.0x06A30.rgba16.png $(TEXTURE_DIR)/enemy.0x07A30.rgba16.png $(TEXTURE_DIR)/enemy.0x08230.rgba16.png $(TEXTURE_DIR)/enemy.0x08A30.rgba16.png $(TEXTURE_DIR)/enemy.0x09230.rgba16.png $(TEXTURE_DIR)/enemy.0x0A230.rgba16.png $(TEXTURE_DIR)/enemy.0x0ECE0.rgba16.png $(TEXTURE_DIR)/enemy.0x0F4E0.rgba16.png $(TEXTURE_DIR)/enemy.0x104E0.rgba16.png $(TEXTURE_DIR)/enemy.0x114E0.rgba16.png $(TEXTURE_DIR)/enemy.0x11CE0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bowser.bin: $(TEXTURE_DIR)/bowser.0x00000.rgba16.png $(TEXTURE_DIR)/bowser.0x02000.rgba16.png $(TEXTURE_DIR)/bowser.0x04000.rgba16.png $(TEXTURE_DIR)/bowser.0x06000.rgba16.png $(TEXTURE_DIR)/bowser.0x08000.rgba16.png $(TEXTURE_DIR)/bowser.0x0A000.rgba16.png $(TEXTURE_DIR)/bowser.0x0C000.rgba16.png $(TEXTURE_DIR)/bowser.0x0E000.rgba16.png $(TEXTURE_DIR)/bowser.0x10000.rgba16.png $(TEXTURE_DIR)/bowser.0x12000.rgba16.png $(TEXTURE_DIR)/bowser.0x14000.rgba16.png $(TEXTURE_DIR)/bowser.0x16000.rgba16.png $(TEXTURE_DIR)/bowser.0x18000.rgba16.png $(TEXTURE_DIR)/bowser.0x1A000.rgba16.png $(TEXTURE_DIR)/bowser.0x1CA50.ia16.png $(TEXTURE_DIR)/bowser.0x1DA50.ia16.png $(TEXTURE_DIR)/bowser.0x1EB88.rgba16.png $(TEXTURE_DIR)/bowser.0x1F438.rgba16.png $(TEXTURE_DIR)/bowser.0x1FC38.rgba16.png $(TEXTURE_DIR)/bowser.0x20C38.rgba16.png $(TEXTURE_DIR)/bowser.0x21C38.rgba16.png $(TEXTURE_DIR)/bowser.0x22438.rgba16.png $(TEXTURE_DIR)/bowser.0x22C38.rgba16.png $(TEXTURE_DIR)/bowser.0x23C38.rgba16.png $(TEXTURE_DIR)/bowser.0x24438.rgba16.png $(TEXTURE_DIR)/bowser.0x25438.rgba16.png $(TEXTURE_DIR)/bowser.0x25C38.rgba16.png $(TEXTURE_DIR)/bowser.0x26438.rgba16.png $(TEXTURE_DIR)/bowser.0x27438.rgba16.png $(TEXTURE_DIR)/bowser.0x28438.rgba16.png $(TEXTURE_DIR)/bowser.0x28C38.rgba16.png $(TEXTURE_DIR)/bowser.0x29C38.rgba16.png $(TEXTURE_DIR)/bowser.0x2A438.rgba16.png $(TEXTURE_DIR)/bowser.0x2AC38.rgba16.png $(TEXTURE_DIR)/bowser.0x2BC38.rgba16.png $(TEXTURE_DIR)/bowser.0x2CC38.rgba16.png $(TEXTURE_DIR)/bowser.0x2DC38.rgba16.png $(TEXTURE_DIR)/bowser.0x2EC38.rgba16.png $(TEXTURE_DIR)/bowser.0x2FC38.rgba16.png $(TEXTURE_DIR)/bowser.0x30C38.rgba16.png $(TEXTURE_DIR)/bowser.0x31C38.rgba16.png $(TEXTURE_DIR)/bowser.0x32C38.rgba16.png $(TEXTURE_DIR)/bowser.0x33C38.rgba16.png $(TEXTURE_DIR)/bowser.0x34C38.rgba16.png $(TEXTURE_DIR)/bowser.0x35C38.rgba16.png $(TEXTURE_DIR)/bowser.0x36C38.rgba16.png $(TEXTURE_DIR)/bowser.0x37C38.rgba16.png $(TEXTURE_DIR)/bowser.0x57AC0.rgba16.png $(TEXTURE_DIR)/bowser.0x58AC0.rgba16.png $(TEXTURE_DIR)/bowser.0x59AC0.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/treasure_chest_fish.bin: $(TEXTURE_DIR)/treasure_chest_fish.0x00090.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x00890.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x07E10.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x08610.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x08E10.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x09610.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0A4F8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0B4F8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0C4F8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0D468.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0E2A8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0EAA8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x0F2A8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x102A8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x12380.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x13FA8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x147A8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x14FA8.rgba16.png $(TEXTURE_DIR)/treasure_chest_fish.0x157A8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/koopa_whomp.bin: $(TEXTURE_DIR)/koopa_whomp.0x00048.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x01050.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x01850.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x02648.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x02E48.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x03648.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x03E48.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x04648.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x04E48.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x05648.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x113F8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x123F8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x12BF8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x133F8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x13BF8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x143F8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x1C360.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x1D360.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x1E360.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x1EB60.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x20AE8.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x213D0.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x21BD0.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x223D0.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x22BD0.rgba16.png $(TEXTURE_DIR)/koopa_whomp.0x233D0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/lakitu_toad.bin: $(TEXTURE_DIR)/lakitu_toad.0x00000.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x00800.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x01800.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x02800.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x03000.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x03800.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x05920.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x06120.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x0FC70.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x15760.rgba16.png $(TEXTURE_DIR)/lakitu_toad.0x16760.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/chillychief_moneybag.bin: $(TEXTURE_DIR)/chillychief_moneybag.0x00060.rgba16.png $(TEXTURE_DIR)/chillychief_moneybag.0x01060.rgba16.png $(TEXTURE_DIR)/chillychief_moneybag.0x02060.rgba16.png $(TEXTURE_DIR)/chillychief_moneybag.0x039B0.rgba16.png $(TEXTURE_DIR)/chillychief_moneybag.0x049B0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/mri_swoop.bin: $(TEXTURE_DIR)/mri_swoop.0x00080.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x01080.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x02170.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x02970.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x03170.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x03970.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x04270.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x04A70.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x05270.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x05A70.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x070E0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x078E0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x080E0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x084E0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x09BA0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x09DA0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x0ADA0.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x10108.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x10908.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x11908.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x12908.rgba16.png $(TEXTURE_DIR)/mri_swoop.0x13108.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/chuckya_shyguy_goomba.bin: $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x00018.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x00418.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x00F18.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x01318.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x01B18.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x02318.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x04058.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x049B8.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x058A8.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x06778.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x06F78.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x07778.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x07F78.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x08F78.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0C0A8.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0C128.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0C840.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0CC40.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0D7E0.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0E088.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0F088.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x0F888.ia16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x11A90.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x12290.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x12E28.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x13628.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x14628.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x14E28.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x15E28.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x16628.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x17628.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x17E28.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x19530.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x19D30.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x1A530.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x1DA60.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x1EA60.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x1FA60.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x20A60.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x21A60.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x22260.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x23998.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x25168.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x25A80.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x274A0.rgba16.png $(TEXTURE_DIR)/chuckya_shyguy_goomba.0x27CA0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/doors_trees_coins.bin: $(TEXTURE_DIR)/doors_trees_coins.0x00080.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x00A08.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x01208.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x01A08.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x02208.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x02A08.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x03208.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x03A08.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x043A8.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x05780.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x05F80.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x06780.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x06F80.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x07E40.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x09168.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x09D10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0AD10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0BD10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0CD10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0D510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0E510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0ED10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x0FD10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x10510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x11510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x11D10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x12510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x12D10.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x13510.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x17320.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x17B20.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x18320.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x18B20.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x19320.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x19B20.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x1A320.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x1AB20.ia16.png $(TEXTURE_DIR)/doors_trees_coins.0x1B5E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1C300.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1CBE0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1CF50.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1DF50.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1E750.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x1F750.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x20750.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x21750.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x233E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x243E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x253E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x25BE0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x263E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x26BE0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x273E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x27BE0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x283E0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x28BE0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x29628.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2A6F0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2AEF0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2BAD0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2BDF8.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2C6A0.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2C9C8.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2D1C8.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2DE28.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2EE28.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x2FF60.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x31048.rgba16.png $(TEXTURE_DIR)/doors_trees_coins.0x32218.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wood_trademark.bin: $(TEXTURE_DIR)/wood_trademark.0x07EA0.rgba16.png $(TEXTURE_DIR)/wood_trademark.0x086A0.rgba16.png $(TEXTURE_DIR)/wood_trademark.0x0B4A0.rgba16.png $(TEXTURE_DIR)/wood_trademark.0x0C4A0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/mario_bg.bin: $(TEXTURE_DIR)/mario_bg.0x001C0.rgba16.png $(TEXTURE_DIR)/mario_bg.0x00E40.rgba16.png $(TEXTURE_DIR)/mario_bg.0x01AC0.rgba16.png $(TEXTURE_DIR)/mario_bg.0x02740.rgba16.png $(TEXTURE_DIR)/mario_bg.0x033C0.rgba16.png $(TEXTURE_DIR)/mario_bg.0x04040.rgba16.png $(TEXTURE_DIR)/mario_bg.0x04CC0.rgba16.png $(TEXTURE_DIR)/mario_bg.0x05940.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/main_menu_segment7.bin: $(TEXTURE_DIR)/main_menu_segment7.0x00018.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x00818.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x01018.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x02018.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x03468.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x03C68.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x04468.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x04C68.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x05468.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x06328.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x06B28.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x073D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x075D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x077D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x079D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x07BD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x07DD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x07FD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x081D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x083D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x085D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x087D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x089D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x08BD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x08DD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x08FD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x091D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x093D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x095D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x097D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x099D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x09BD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x09DD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x09FD0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0A1D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0A3D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0A5D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0A7D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0A9D0.rgba16.png $(TEXTURE_DIR)/main_menu_segment7.0x0AC48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AC88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0ACC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AD08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AD48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AD88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0ADC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AE08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AE48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AE88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AEC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AF08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AF48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AF88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0AFC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B008.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B048.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B088.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B0C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B108.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B148.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B188.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B1C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B208.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B248.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B288.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B2C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B308.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B348.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B388.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B3C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B408.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B448.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B488.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B4C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B508.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B548.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B588.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B5C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B608.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B648.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B688.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B6C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B708.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B748.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B788.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B7C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B808.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B848.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B888.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B8C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B908.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B948.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B988.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0B9C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BA08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BA48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BA88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BAC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BB08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BB48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BB88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BBC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BC08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BC48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BC88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BCC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BD08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BD48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BD88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BDC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BE08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BE48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BE88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BEC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BF08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BF48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BF88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0BFC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C008.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C048.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C088.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C0C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C108.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C148.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C188.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C1C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C208.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C248.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C288.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C2C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C308.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C348.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C388.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C3C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C408.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C448.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C488.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C4C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C508.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C548.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C588.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C5C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C608.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C648.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C688.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C6C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C708.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C748.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C788.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C7C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C808.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C848.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C888.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C8C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C908.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C948.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C988.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0C9C8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CA08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CA48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CA88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CAC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CB08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CB48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CB88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CBC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CC08.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CC48.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CC88.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0CCC8.ia8.png $(TEXTURE_DIR)/main_menu_segment7.0x0D1A8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/water_skybox.bin: $(TEXTURE_DIR)/water_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ccm_skybox.bin: $(TEXTURE_DIR)/ccm_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/clouds_skybox.bin: $(TEXTURE_DIR)/clouds_skybox.0x00000.skybox.png $(TEXTURE_DIR)/clouds_skybox.0x14000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bifs_skybox.bin: $(TEXTURE_DIR)/bifs_skybox.0x00000.skybox.png $(TEXTURE_DIR)/bifs_skybox.0x18000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wdw_skybox.bin: $(TEXTURE_DIR)/wdw_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/cloud_floor_skybox.bin: $(TEXTURE_DIR)/cloud_floor_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ssl_skybox.bin: $(TEXTURE_DIR)/ssl_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bbh_skybox.bin: $(TEXTURE_DIR)/bbh_skybox.0x00000.skybox.png $(TEXTURE_DIR)/bbh_skybox.0x14000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bidw_skybox.bin: $(TEXTURE_DIR)/bidw_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bits_skybox.bin: $(TEXTURE_DIR)/bits_skybox.0x00000.skybox.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/lll_textures.bin: $(TEXTURE_DIR)/lll_textures.0x00000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x00800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x01000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x01800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x02000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x02800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x03000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x03800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x04000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x04800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x05000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x05800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x06000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x06800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x07000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x07800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x08000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x08800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x09000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x09800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/lll_textures.0x0B000.rgba16.png $(TEXTURE_DIR)/lll_textures.0x0B800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bbh_textures.bin: $(TEXTURE_DIR)/bbh_textures.0x00000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x00800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x01000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x01800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x02800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x03800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x04800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x05000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x06000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x06800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x07000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x08000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x08800.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x09000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/bbh_textures.0x0A800.ia16.png $(TEXTURE_DIR)/bbh_textures.0x0B000.ia16.png $(TEXTURE_DIR)/bbh_textures.0x0B800.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bob_textures.bin: $(TEXTURE_DIR)/bob_textures.0x00000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x00800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x01000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x01800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x02000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x02800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x03000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x03800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x04000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x04800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x05000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x05800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x06000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x07000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x07800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x08000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x08800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x09000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x09800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/bob_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/bob_textures.0x0B000.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/jrb_textures.bin: $(TEXTURE_DIR)/jrb_textures.0x00000.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x00800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x01800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x02800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x03800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x04800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x05800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x06000.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x06800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x07800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x08800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x09000.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/jrb_textures.0x0B800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/rr_textures.bin: $(TEXTURE_DIR)/rr_textures.0x00000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x00800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x01000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x01800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x02000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x03000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x03800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x04800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x05000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x05800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x06000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x06800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x07000.rgba16.png $(TEXTURE_DIR)/rr_textures.0x07800.rgba16.png $(TEXTURE_DIR)/rr_textures.0x08000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ccm_textures.bin: $(TEXTURE_DIR)/ccm_textures.0x00000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x00800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x01000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x02000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x02800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x03000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x03800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x04000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x04800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x05000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x05800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x06000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x06800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x07000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x08000.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x08800.rgba16.png $(TEXTURE_DIR)/ccm_textures.0x09000.ia16.png $(TEXTURE_DIR)/ccm_textures.0x09800.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/hmc_textures.bin: $(TEXTURE_DIR)/hmc_textures.0x00000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x01000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x01800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x02000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x02800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x03000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x03800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x04800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x05800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x06800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x07000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x07800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x08800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x09800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/hmc_textures.0x0B800.ia16.png $(TEXTURE_DIR)/hmc_textures.0x0C000.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ttc_textures.bin: $(TEXTURE_DIR)/ttc_textures.0x00000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x00800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x01000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x01800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x02000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x02800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x03000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x03800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x04000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x05000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x05800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x06000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x06800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x07000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x07800.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x08000.rgba16.png $(TEXTURE_DIR)/ttc_textures.0x08400.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ttm_textures.bin: $(TEXTURE_DIR)/ttm_textures.0x00000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x00800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x01800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x02000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x02800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x03000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x03800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x04000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x04800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x05000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x05800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x06000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x06800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x07000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x07800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x08000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x08800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x09800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x0B000.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x0B800.rgba16.png $(TEXTURE_DIR)/ttm_textures.0x0C000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wf_textures.bin: $(TEXTURE_DIR)/wf_textures.0x00000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x00800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x01000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x01800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x02000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x02800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x03000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x03800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x04000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x04800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x05000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x05800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x06000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x06800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x07000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x07800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x08000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x08800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x09000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x09800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/wf_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/wf_textures.0x0B000.ia16.png $(TEXTURE_DIR)/wf_textures.0x0B800.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/castle_grounds_textures.bin: $(TEXTURE_DIR)/castle_grounds_textures.0x00000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x00800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x01000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x02000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x02800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x03000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x03800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x04000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x04800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x05000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x05800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x06000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x06800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x07800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x08000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x08800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x09000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x09800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x0A800.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x0B000.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x0B400.rgba16.png $(TEXTURE_DIR)/castle_grounds_textures.0x0BC00.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/inside_castle_textures.bin: $(TEXTURE_DIR)/inside_castle_textures.0x00000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x01000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x02000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x03000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x03800.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x04000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x04800.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x05000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x05800.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x06000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x07000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x08000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x08800.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x09000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x09800.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x0A000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x0B000.rgba16.png $(TEXTURE_DIR)/inside_castle_textures.0x0B800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/flower_textures.bin: $(TEXTURE_DIR)/flower_textures.0x00048.rgba16.png $(TEXTURE_DIR)/flower_textures.0x00848.rgba16.png $(TEXTURE_DIR)/flower_textures.0x01048.rgba16.png $(TEXTURE_DIR)/flower_textures.0x01848.rgba16.png $(TEXTURE_DIR)/flower_textures.0x02120.rgba16.png $(TEXTURE_DIR)/flower_textures.0x02920.rgba16.png $(TEXTURE_DIR)/flower_textures.0x03120.rgba16.png $(TEXTURE_DIR)/flower_textures.0x03920.rgba16.png $(TEXTURE_DIR)/flower_textures.0x04120.rgba16.png $(TEXTURE_DIR)/flower_textures.0x04920.rgba16.png $(TEXTURE_DIR)/flower_textures.0x05120.rgba16.png $(TEXTURE_DIR)/flower_textures.0x05920.rgba16.png $(TEXTURE_DIR)/flower_textures.0x06048.rgba16.png $(TEXTURE_DIR)/flower_textures.0x0684C.rgba16.png $(TEXTURE_DIR)/flower_textures.0x06AD8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bbh_segment7.bin: $(TEXTURE_DIR)/bbh_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x03000.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x03400.rgba16.png $(TEXTURE_DIR)/bbh_segment7.0x04400.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ccm_segment7.bin: $(TEXTURE_DIR)/ccm_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x00900.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x01100.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x01900.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x02100.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x02900.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x03100.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x03900.ia16.png $(TEXTURE_DIR)/ccm_segment7.0x03B00.ia16.png $(TEXTURE_DIR)/ccm_segment7.0x04300.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x04B00.rgba16.png $(TEXTURE_DIR)/ccm_segment7.0x11958.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/inside_castle_segment7.bin: $(TEXTURE_DIR)/inside_castle_segment7.0x00000.ia16.png $(TEXTURE_DIR)/inside_castle_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x01000.ia16.png $(TEXTURE_DIR)/inside_castle_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x03000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x03800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x04800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x05800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x06000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x06800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x07000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x07800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x08000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x08800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x09000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x09800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0A000.ia16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0A800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0B800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0C800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0D800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0E800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x0F800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x10800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x11800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x12800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x13800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x14800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x15800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x16800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x17000.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x17800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x18800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x19800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1A800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1B800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1C800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1D800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1E800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x1F800.rgba16.png $(TEXTURE_DIR)/inside_castle_segment7.0x20800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/hmc_segment7.bin: $(TEXTURE_DIR)/hmc_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x03000.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x03800.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x04000.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x04800.rgba16.png $(TEXTURE_DIR)/hmc_segment7.0x24CE0.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ssl_segment7.bin: $(TEXTURE_DIR)/ssl_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x00800.ia16.png $(TEXTURE_DIR)/ssl_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x02800.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x03800.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x04018.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x0BFA8.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x0C7A8.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x0D7A8.rgba16.png $(TEXTURE_DIR)/ssl_segment7.0x0E7A8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bob_segment7.bin: $(TEXTURE_DIR)/bob_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bob_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/bob_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bob_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/bob_segment7.0x02000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/sl_segment7.bin: $(TEXTURE_DIR)/sl_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/sl_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/sl_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/sl_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/sl_segment7.0x02000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wdw_segment7.bin: $(TEXTURE_DIR)/wdw_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/wdw_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/wdw_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/wdw_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/wdw_segment7.0x02000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/jrb_segment7.bin: $(TEXTURE_DIR)/jrb_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/jrb_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/jrb_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/jrb_segment7.0x02000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/thi_segment7.bin: $(TEXTURE_DIR)/thi_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/thi_segment7.0x00800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ttc_segment7.bin: $(TEXTURE_DIR)/ttc_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/ttc_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/ttc_segment7.0x15F90.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/rr_segment7.bin: $(TEXTURE_DIR)/rr_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/rr_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/rr_segment7.0x01800.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/castle_grounds_segment7.bin: $(TEXTURE_DIR)/castle_grounds_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/castle_grounds_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/castle_grounds_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/castle_grounds_segment7.0x0C9E8.rgba16.png $(TEXTURE_DIR)/castle_grounds_segment7.0x0D9E8.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bidw_segment7.bin: $(TEXTURE_DIR)/bidw_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bidw_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/bidw_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bidw_segment7.0x01800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/vanish_cap_segment7.bin: $(TEXTURE_DIR)/vanish_cap_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/vanish_cap_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/vanish_cap_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/vanish_cap_segment7.0x02800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bifs_segment7.bin: $(TEXTURE_DIR)/bifs_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bifs_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bifs_segment7.0x01800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/secret_aquarium_segment7.bin:
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bits_segment7.bin: $(TEXTURE_DIR)/bits_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bits_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bits_segment7.0x02000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/lll_segment7.bin: $(TEXTURE_DIR)/lll_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x02800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x03000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x03800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x04000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x04800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x05000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x05800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x06000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x06800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x07000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x07800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x08000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x08800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x09000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x09800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0A000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0A800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0B000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0B800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0C000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0C800.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0D000.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0D200.ia16.png $(TEXTURE_DIR)/lll_segment7.0x0D400.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0DC00.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0E400.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0EC00.rgba16.png $(TEXTURE_DIR)/lll_segment7.0x0F400.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ddd_segment7.bin: $(TEXTURE_DIR)/ddd_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/ddd_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/ddd_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/ddd_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/ddd_segment7.0x03000.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wf_segment7.bin: $(TEXTURE_DIR)/wf_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/wf_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/wf_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/wf_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/wf_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/wf_segment7.0x02800.ia8.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/cake_end.bin: $(TEXTURE_DIR)/cake_end.0x00000.rgba16.png $(TEXTURE_DIR)/cake_end.0x00C80.rgba16.png $(TEXTURE_DIR)/cake_end.0x01900.rgba16.png $(TEXTURE_DIR)/cake_end.0x02580.rgba16.png $(TEXTURE_DIR)/cake_end.0x03200.rgba16.png $(TEXTURE_DIR)/cake_end.0x03E80.rgba16.png $(TEXTURE_DIR)/cake_end.0x04B00.rgba16.png $(TEXTURE_DIR)/cake_end.0x05780.rgba16.png $(TEXTURE_DIR)/cake_end.0x06400.rgba16.png $(TEXTURE_DIR)/cake_end.0x07080.rgba16.png $(TEXTURE_DIR)/cake_end.0x07D00.rgba16.png $(TEXTURE_DIR)/cake_end.0x08980.rgba16.png $(TEXTURE_DIR)/cake_end.0x09600.rgba16.png $(TEXTURE_DIR)/cake_end.0x0A280.rgba16.png $(TEXTURE_DIR)/cake_end.0x0AF00.rgba16.png $(TEXTURE_DIR)/cake_end.0x0BB80.rgba16.png $(TEXTURE_DIR)/cake_end.0x0C800.rgba16.png $(TEXTURE_DIR)/cake_end.0x0D480.rgba16.png $(TEXTURE_DIR)/cake_end.0x0E100.rgba16.png $(TEXTURE_DIR)/cake_end.0x0ED80.rgba16.png $(TEXTURE_DIR)/cake_end.0x0FA00.rgba16.png $(TEXTURE_DIR)/cake_end.0x10680.rgba16.png $(TEXTURE_DIR)/cake_end.0x11300.rgba16.png $(TEXTURE_DIR)/cake_end.0x11F80.rgba16.png $(TEXTURE_DIR)/cake_end.0x12C00.rgba16.png $(TEXTURE_DIR)/cake_end.0x13880.rgba16.png $(TEXTURE_DIR)/cake_end.0x14500.rgba16.png $(TEXTURE_DIR)/cake_end.0x15180.rgba16.png $(TEXTURE_DIR)/cake_end.0x15E00.rgba16.png $(TEXTURE_DIR)/cake_end.0x16A80.rgba16.png $(TEXTURE_DIR)/cake_end.0x17700.rgba16.png $(TEXTURE_DIR)/cake_end.0x18380.rgba16.png $(TEXTURE_DIR)/cake_end.0x19000.rgba16.png $(TEXTURE_DIR)/cake_end.0x19C80.rgba16.png $(TEXTURE_DIR)/cake_end.0x1A900.rgba16.png $(TEXTURE_DIR)/cake_end.0x1B580.rgba16.png $(TEXTURE_DIR)/cake_end.0x1C200.rgba16.png $(TEXTURE_DIR)/cake_end.0x1CE80.rgba16.png $(TEXTURE_DIR)/cake_end.0x1DB00.rgba16.png $(TEXTURE_DIR)/cake_end.0x1E780.rgba16.png $(TEXTURE_DIR)/cake_end.0x1F400.rgba16.png $(TEXTURE_DIR)/cake_end.0x20080.rgba16.png $(TEXTURE_DIR)/cake_end.0x20D00.rgba16.png $(TEXTURE_DIR)/cake_end.0x21980.rgba16.png $(TEXTURE_DIR)/cake_end.0x22600.rgba16.png $(TEXTURE_DIR)/cake_end.0x23280.rgba16.png $(TEXTURE_DIR)/cake_end.0x23F00.rgba16.png $(TEXTURE_DIR)/cake_end.0x24B80.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/castle_courtyard_segment7.bin:
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/secret_slide_segment7.bin: $(TEXTURE_DIR)/secret_slide_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/secret_slide_segment7.0x00800.ia16.png $(TEXTURE_DIR)/secret_slide_segment7.0x01000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/metal_cap_segment7.bin: $(TEXTURE_DIR)/metal_cap_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/metal_cap_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/metal_cap_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/metal_cap_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/metal_cap_segment7.0x02800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/wing_cap_segment7.bin: $(TEXTURE_DIR)/wing_cap_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/wing_cap_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/wing_cap_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/wing_cap_segment7.0x02000.ia16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bidw_platform_segment7.bin: $(TEXTURE_DIR)/bidw_platform_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bidw_platform_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/bidw_platform_segment7.0x01800.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/rainbow_bonus_segment7.bin: $(TEXTURE_DIR)/rainbow_bonus_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/rainbow_bonus_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/rainbow_bonus_segment7.0x00C00.rgba16.png $(TEXTURE_DIR)/rainbow_bonus_segment7.0x01400.rgba16.png $(TEXTURE_DIR)/rainbow_bonus_segment7.0x01600.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bifs_platform_segment7.bin: $(TEXTURE_DIR)/bifs_platform_segment7.0x00000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/bits_platform_segment7.bin: $(TEXTURE_DIR)/bits_platform_segment7.0x00000.rgba16.png $(TEXTURE_DIR)/bits_platform_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/bits_platform_segment7.0x01000.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+$(MIO0_DIR)/ttm_segment7.bin: $(TEXTURE_DIR)/ttm_segment7.0x00000.ia16.png $(TEXTURE_DIR)/ttm_segment7.0x00800.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x01000.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x01800.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x02000.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x02800.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x03000.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x04000.rgba16.png $(TEXTURE_DIR)/ttm_segment7.0x2AD30.rgba16.png
+	$(N64GRAPHICS) $@ $^
+
+
+
+MIO0_FILES = \
+$(MIO0_DIR)/font_graphics.mio0 \
+$(MIO0_DIR)/mario.mio0 \
+$(MIO0_DIR)/yoshiegg_owl_thwomp.mio0 \
+$(MIO0_DIR)/big_bully.mio0 \
+$(MIO0_DIR)/bobombs.mio0 \
+$(MIO0_DIR)/sea_creatures_texture.mio0 \
+$(MIO0_DIR)/vulture_pokey.mio0 \
+$(MIO0_DIR)/monkey.mio0 \
+$(MIO0_DIR)/spindrift_penguin_snowman.mio0 \
+$(MIO0_DIR)/checkerboard_question.mio0 \
+$(MIO0_DIR)/piano_books.mio0 \
+$(MIO0_DIR)/peach_toadstool.mio0 \
+$(MIO0_DIR)/enemy.mio0 \
+$(MIO0_DIR)/bowser.mio0 \
+$(MIO0_DIR)/treasure_chest_fish.mio0 \
+$(MIO0_DIR)/koopa_whomp.mio0 \
+$(MIO0_DIR)/lakitu_toad.mio0 \
+$(MIO0_DIR)/chillychief_moneybag.mio0 \
+$(MIO0_DIR)/mri_swoop.mio0 \
+$(MIO0_DIR)/chuckya_shyguy_goomba.mio0 \
+$(MIO0_DIR)/doors_trees_coins.mio0 \
+$(MIO0_DIR)/wood_trademark.mio0 \
+$(MIO0_DIR)/debug_level_select.mio0 \
+$(MIO0_DIR)/mario_bg.mio0 \
+$(MIO0_DIR)/main_menu_segment7.mio0 \
+$(MIO0_DIR)/water_skybox.mio0 \
+$(MIO0_DIR)/ccm_skybox.mio0 \
+$(MIO0_DIR)/clouds_skybox.mio0 \
+$(MIO0_DIR)/bifs_skybox.mio0 \
+$(MIO0_DIR)/wdw_skybox.mio0 \
+$(MIO0_DIR)/cloud_floor_skybox.mio0 \
+$(MIO0_DIR)/ssl_skybox.mio0 \
+$(MIO0_DIR)/bbh_skybox.mio0 \
+$(MIO0_DIR)/bidw_skybox.mio0 \
+$(MIO0_DIR)/bits_skybox.mio0 \
+$(MIO0_DIR)/lll_textures.mio0 \
+$(MIO0_DIR)/bbh_textures.mio0 \
+$(MIO0_DIR)/bob_textures.mio0 \
+$(MIO0_DIR)/jrb_textures.mio0 \
+$(MIO0_DIR)/rr_textures.mio0 \
+$(MIO0_DIR)/ccm_textures.mio0 \
+$(MIO0_DIR)/hmc_textures.mio0 \
+$(MIO0_DIR)/ttc_textures.mio0 \
+$(MIO0_DIR)/ttm_textures.mio0 \
+$(MIO0_DIR)/wf_textures.mio0 \
+$(MIO0_DIR)/castle_grounds_textures.mio0 \
+$(MIO0_DIR)/inside_castle_textures.mio0 \
+$(MIO0_DIR)/flower_textures.mio0 \
+$(MIO0_DIR)/bbh_segment7.mio0 \
+$(MIO0_DIR)/ccm_segment7.mio0 \
+$(MIO0_DIR)/inside_castle_segment7.mio0 \
+$(MIO0_DIR)/hmc_segment7.mio0 \
+$(MIO0_DIR)/ssl_segment7.mio0 \
+$(MIO0_DIR)/bob_segment7.mio0 \
+$(MIO0_DIR)/sl_segment7.mio0 \
+$(MIO0_DIR)/wdw_segment7.mio0 \
+$(MIO0_DIR)/jrb_segment7.mio0 \
+$(MIO0_DIR)/thi_segment7.mio0 \
+$(MIO0_DIR)/ttc_segment7.mio0 \
+$(MIO0_DIR)/rr_segment7.mio0 \
+$(MIO0_DIR)/castle_grounds_segment7.mio0 \
+$(MIO0_DIR)/bidw_segment7.mio0 \
+$(MIO0_DIR)/vanish_cap_segment7.mio0 \
+$(MIO0_DIR)/bifs_segment7.mio0 \
+$(MIO0_DIR)/secret_aquarium_segment7.mio0 \
+$(MIO0_DIR)/bits_segment7.mio0 \
+$(MIO0_DIR)/lll_segment7.mio0 \
+$(MIO0_DIR)/ddd_segment7.mio0 \
+$(MIO0_DIR)/wf_segment7.mio0 \
+$(MIO0_DIR)/cake_end.mio0 \
+$(MIO0_DIR)/castle_courtyard_segment7.mio0 \
+$(MIO0_DIR)/secret_slide_segment7.mio0 \
+$(MIO0_DIR)/metal_cap_segment7.mio0 \
+$(MIO0_DIR)/wing_cap_segment7.mio0 \
+$(MIO0_DIR)/bidw_platform_segment7.mio0 \
+$(MIO0_DIR)/rainbow_bonus_segment7.mio0 \
+$(MIO0_DIR)/bifs_platform_segment7.mio0 \
+$(MIO0_DIR)/bits_platform_segment7.mio0 \
+$(MIO0_DIR)/ttm_segment7.mio0
+
+LEVEL_FILES = \
+$(LEVEL_DIR)/main_entry.s \
+$(GEO_DIR)/owl_thwomp_bullet_heave.geo.s \
+$(GEO_DIR)/bully_blargg.geo.s \
+$(GEO_DIR)/kingbobomb_bubble.geo.s \
+$(GEO_DIR)/sea_creatures.geo.s \
+$(GEO_DIR)/klepto_eyerock_pokey.geo.s \
+$(GEO_DIR)/mole_monkey_fwoosh.geo.s \
+$(GEO_DIR)/spindrift_penguin_blizzard.geo.s \
+$(GEO_DIR)/cap_switch.geo.s \
+$(GEO_DIR)/bookend_chair_piano_boo.geo.s \
+$(GEO_DIR)/birds_peach_yoshi.geo.s \
+$(GEO_DIR)/bubba_wiggler_lakitu.geo.s \
+$(GEO_DIR)/bowser_flames_bomb.geo.s \
+$(GEO_DIR)/skeeter_fish_manta_chest.geo.s \
+$(GEO_DIR)/koopa_log_piranha_whomp_chomp.geo.s \
+$(GEO_DIR)/lakitu_toad_mips_boo.geo.s \
+$(GEO_DIR)/moneybag.geo.s \
+$(GEO_DIR)/mri_swoop_snufit_dorrie_scuttlebug.geo.s \
+$(GEO_DIR)/cannon_box_switch_enemies.geo.s \
+$(GEO_DIR)/coins_pipe_doors_maps_trees.geo.s \
+./behavior_data.s \
+$(LEVEL_DIR)/game_over_level.s \
+$(LEVEL_DIR)/main_menu_level.s \
+$(LEVEL_DIR)/main_level_scripts.s \
+$(LEVEL_DIR)/bbh_level.s \
+$(LEVEL_DIR)/ccm_level.s \
+$(LEVEL_DIR)/inside_castle_level.s \
+$(LEVEL_DIR)/hmc_level.s \
+$(LEVEL_DIR)/ssl_level.s \
+$(LEVEL_DIR)/bob_level.s \
+$(LEVEL_DIR)/sl_level.s \
+$(LEVEL_DIR)/wdw_level.s \
+$(LEVEL_DIR)/jrb_level.s \
+$(LEVEL_DIR)/thi_level.s \
+$(LEVEL_DIR)/ttc_level.s \
+$(LEVEL_DIR)/rr_level.s \
+$(LEVEL_DIR)/castle_grounds_level.s \
+$(LEVEL_DIR)/bidw_level.s \
+$(LEVEL_DIR)/vanish_cap_level.s \
+$(LEVEL_DIR)/bifs_level.s \
+$(LEVEL_DIR)/secret_aquarium_level.s \
+$(LEVEL_DIR)/bits_level.s \
+$(LEVEL_DIR)/lll_level.s \
+$(LEVEL_DIR)/ddd_level.s \
+$(LEVEL_DIR)/wf_level.s \
+$(LEVEL_DIR)/cake_end_level.s \
+$(LEVEL_DIR)/castle_courtyard_level.s \
+$(LEVEL_DIR)/secret_slide_level.s \
+$(LEVEL_DIR)/metal_cap_level.s \
+$(LEVEL_DIR)/wing_cap_level.s \
+$(LEVEL_DIR)/bidw_platform_level.s \
+$(LEVEL_DIR)/rainbow_bonus_level.s \
+$(LEVEL_DIR)/bifs_platform_level.s \
+$(LEVEL_DIR)/bits_platform_level.s \
+$(LEVEL_DIR)/ttm_level.s
+
+MUSIC_FILES = \
+$(MUSIC_DIR)/seq_00.m64 \
+$(MUSIC_DIR)/seq_01.m64 \
+$(MUSIC_DIR)/seq_02.m64 \
+$(MUSIC_DIR)/seq_03.m64 \
+$(MUSIC_DIR)/seq_04.m64 \
+$(MUSIC_DIR)/seq_05.m64 \
+$(MUSIC_DIR)/seq_06.m64 \
+$(MUSIC_DIR)/seq_07.m64 \
+$(MUSIC_DIR)/seq_08.m64 \
+$(MUSIC_DIR)/seq_09.m64 \
+$(MUSIC_DIR)/seq_0A.m64 \
+$(MUSIC_DIR)/seq_0B.m64 \
+$(MUSIC_DIR)/seq_0C.m64 \
+$(MUSIC_DIR)/seq_0D.m64 \
+$(MUSIC_DIR)/seq_0E.m64 \
+$(MUSIC_DIR)/seq_0F.m64 \
+$(MUSIC_DIR)/seq_10.m64 \
+$(MUSIC_DIR)/seq_11.m64 \
+$(MUSIC_DIR)/seq_12.m64 \
+$(MUSIC_DIR)/seq_13.m64 \
+$(MUSIC_DIR)/seq_14.m64 \
+$(MUSIC_DIR)/seq_15.m64 \
+$(MUSIC_DIR)/seq_16.m64 \
+$(MUSIC_DIR)/seq_17.m64 \
+$(MUSIC_DIR)/seq_18.m64 \
+$(MUSIC_DIR)/seq_19.m64 \
+$(MUSIC_DIR)/seq_1A.m64 \
+$(MUSIC_DIR)/seq_1B.m64 \
+$(MUSIC_DIR)/seq_1C.m64 \
+$(MUSIC_DIR)/seq_1D.m64 \
+$(MUSIC_DIR)/seq_1E.m64 \
+$(MUSIC_DIR)/seq_1F.m64 \
+$(MUSIC_DIR)/seq_20.m64 \
+$(MUSIC_DIR)/seq_21.m64
