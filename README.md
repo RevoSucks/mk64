@@ -10,3 +10,5 @@ To contribute:
 Requires [n64split](https://github.com/queueRAM/sm64tools)
 
 Check n64split folder in this repo for latest YAML file. This file is used for telling n64split how to split the mk64 rom.
+
+decompile asm with [mips to c online](https://simonsoftware.se/other/mips_to_c.py)
