@@ -12,9 +12,9 @@ A prior copy of the game is required to extract the required assets.
 
 ## Progress
 
-Stage: Dissasembly
+Stage: Dissasembly (check n64split folder in this repo for YAML)
 
-Make: Needs making and linking
+Make: Needs making and linking (Check sm64MAKEFILE folder in this repo)
 
 ## Contributing
 
