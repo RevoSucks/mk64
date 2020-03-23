@@ -1,3 +1,4 @@
+// Decompiled from mips to c online with no changes.
 void *foo(void *arg0) {
     u32 sp74;
     f32 sp48;
