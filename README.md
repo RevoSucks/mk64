@@ -20,7 +20,7 @@ Make: Needs making and linking (Check sm64MAKEFILE folder in this repo)
 
 Pull requests are welcome.
 
-Requires [n64split](https://github.com/queueRAM/sm64tools)
+Requires [n64split](https://github.com/queueRAM/sm64tools) and a MK64.z64 (!) (USA) rom and the YAML file from this repo in n64split folder.
 
 Check n64split folder in this repo for latest YAML file. This file is used for telling n64split how to split the mk64 rom.
 
