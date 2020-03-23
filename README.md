@@ -5,7 +5,7 @@ The source and data have been partially disassembled and labeled.
 
 It builds the following ROMs:
 
-* Does not build any roms
+* Polybius 3.1 (O)
 
 This repo does not include all assets necessary for compiling the ROMs.
 A prior copy of the game is required to extract the required assets.
