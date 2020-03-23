@@ -30,5 +30,5 @@ Label sections of assembly (asm located in mk64.u.s) by decompiling a function w
 
 Note that none of the credit for the current progress can be attributed to MegaMech.
 
-[n64 split walkthrough](https://www.youtube.com/watch?v=KCeE4mjyCR0&feature=youtu.be)
+[n64 split youtube walkthrough](https://www.youtube.com/watch?v=KCeE4mjyCR0&feature=youtu.be)
 
