@@ -5,4 +5,5 @@
 
 boot:
 .incbin "bin/mk64.u.000040.boot.bin"
+.incbin "bin/ipl3_font.bin"
 boot_end:
