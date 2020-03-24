@@ -46,6 +46,7 @@ TOOLS_DIR = tools
 MIO0TOOL = $(TOOLS_DIR)/mio0
 N64CKSUM = $(TOOLS_DIR)/n64cksum
 N64GRAPHICS = $(TOOLS_DIR)/n64graphics
+IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -68,6 +69,11 @@ endif
 
 clean:
 	$(RM) -r $(BUILD_DIR)
+
+asm/boot.s: $(BUILD_DIR)/bin/ipl3_font.bin
+
+$(BUILD_DIR)/bin/ipl3_font.bin: lib/ipl3_font.png | $(BUILD_DIR)
+	$(IPLFONTUTIL) e $< $@
 
 $(BUILD_DIR)/$(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
 	$(MIO0TOOL) $< $@
