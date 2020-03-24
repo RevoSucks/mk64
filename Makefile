@@ -1,26 +1,48 @@
-# Makefile to rebuild SM64 split image
+# Makefile to rebuild MK64 split image
 
 ################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
 BUILD_DIR = build
 
+# Directories containing source files
+SRC_DIRS := src src/libultra
+ASM_DIRS := asm data
+
+# If COMPARE is 1, check the output sha1sum when building 'all'
+COMPARE = 1
+
+TARGET = mk64.u
+LD_SCRIPT = $(TARGET).ld
+MIO0_DIR = bin
+TEXTURE_DIR = textures
+
+# Source code files
+C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+
+# Object files
+O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
+           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o))
+
 ##################### Compiler Options #######################
-CROSS = mips64-elf-
+CROSS = mips-linux-gnu-
 AS = $(CROSS)as
 CC = $(CROSS)gcc
 LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
-ASFLAGS = -mtune=vr4300 -march=vr4300
-CFLAGS  = -Wall -O2 -mtune=vr4300 -march=vr4300 -G 0 -c
-LDFLAGS = -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map
+ASFLAGS = -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR)
+OBJCOPYFLAGS = --pad-to=0xC00000 --gap-fill=0xFF
+CFLAGS  = -O2 -march=vr4300 -G 0 -c
+
+LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/mk64.u.map --no-check-sections
 
 ####################### Other Tools #########################
 
 # N64 tools
-TOOLS_DIR = ../tools
+TOOLS_DIR = tools
 MIO0TOOL = $(TOOLS_DIR)/mio0
 N64CKSUM = $(TOOLS_DIR)/n64cksum
 N64GRAPHICS = $(TOOLS_DIR)/n64graphics
@@ -29,7 +51,7 @@ EMU_FLAGS = --noosd
 LOADER = loader64
 LOADER_FLAGS = -vwf
 
-FixPath = $(subst /,\,$1)
+SHA1SUM = sha1sum
 
 ######################## Targets #############################
 
@@ -39,32 +61,29 @@ default: all
 MAKEFILE_SPLIT = Makefile.split
 include $(MAKEFILE_SPLIT)
 
-all: $(TARGET).z64
+all: $(BUILD_DIR)/$(TARGET).z64
+ifeq ($(COMPARE),1)
+	@$(SHA1SUM) -c $(TARGET).sha1
+endif
 
 clean:
-	del /Q $(call FixPath,$(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).o $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).map $(TARGET).z64)
+	$(RM) -r $(BUILD_DIR)
 
 $(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR)
+	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
 
-$(BUILD_DIR)/$(TARGET).o: $(TARGET).s Makefile $(MAKEFILE_SPLIT) $(MIO0_FILES) $(LEVEL_FILES) $(MUSIC_FILES) | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.s $(BUILD_DIR)
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/%.o: %.c Makefile.as | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $@ $<
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
+	$(LD) $(LDFLAGS) -o $@ $(O_FILES)
 
-$(BUILD_DIR)/$(TARGET).elf: $(BUILD_DIR)/$(TARGET).o $(LD_SCRIPT)
-	$(LD) $(LDFLAGS) -o $@ $< $(LIBS)
-
-$(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
-	$(OBJCOPY) $< $@ -O binary
-
-# final z64 updates checksum
-$(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
-	$(N64CKSUM) $< $@
+$(BUILD_DIR)/$(TARGET).z64: $(BUILD_DIR)/$(TARGET).elf
+	$(OBJCOPY) $(OBJCOPYFLAGS) $< $(@:.z64=.bin) -O binary
+	$(N64CKSUM) $(@:.z64=.bin) $@
 
 $(BUILD_DIR)/$(TARGET).hex: $(TARGET).z64
 	xxd $< > $@
@@ -78,4 +97,6 @@ test: $(TARGET).z64
 load: $(TARGET).z64
 	$(LOADER) $(LOADER_FLAGS) $<
 
-.PHONY: all clean default diff test
+.PHONY: all clean default diff test load
+
+print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
