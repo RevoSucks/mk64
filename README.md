@@ -8,6 +8,13 @@ It builds the following ROMs:
 
 Integration of asset extraction is an ongoing process.
 
+## Building
+
+Run the following commands after pulling:
+
+* make -C tools
+* make
+
 ## Contributing
 
 Pull requests are welcome.
