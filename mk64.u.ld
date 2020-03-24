@@ -14,7 +14,8 @@ SECTIONS
    /* 0x80000400 001000-0D9B70 [D8B70] */
    .text80000400 0x80000400 : AT(0x001000) {
       build/asm/entry.o(.text);
-      build/asm/code_80000450.o(.text);
+	  build/src/main.o(.text);
+      build/asm/code_800004E0.o(.text);
       build/asm/code_800029B0.o(.text);
       build/asm/code_80003550.o(.text);
       build/asm/code_800040C0.o(.text);
