@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#if defined(_WIN32) || defined(_WIN64)
+#include <io.h>
+#include <fcntl.h>
+#endif
 
 #include "libmio0.h"
 #include "utils.h"
@@ -11,7 +15,47 @@
 
 #define GET_BIT(buf, bit) ((buf)[(bit) / 8] & (1 << (7 - ((bit) % 8))))
 
+// types
+typedef struct
+{
+   int *indexes;
+   int allocated;
+   int count;
+   int start;
+} lookback;
+
 // functions
+#define LOOKBACK_COUNT 256
+#define LOOKBACK_INIT_SIZE 128
+static lookback *lookback_init(void)
+{
+   lookback *lb = malloc(LOOKBACK_COUNT * sizeof(*lb));
+   for (int i = 0; i < LOOKBACK_COUNT; i++) {
+      lb[i].allocated = LOOKBACK_INIT_SIZE;
+      lb[i].indexes = malloc(lb[i].allocated * sizeof(*lb[i].indexes));
+      lb[i].count = 0;
+      lb[i].start = 0;
+   }
+   return lb;
+}
+
+static void lookback_free(lookback *lb)
+{
+   for (int i = 0; i < LOOKBACK_COUNT; i++) {
+      free(lb[i].indexes);
+   }
+   free(lb);
+}
+
+static inline void lookback_push(lookback *lkbk, unsigned char val, int index)
+{
+   lookback *lb = &lkbk[val];
+   if (lb->count == lb->allocated) {
+      lb->allocated *= 4;
+      lb->indexes = realloc(lb->indexes, lb->allocated * sizeof(*lb->indexes));
+   }
+   lb->indexes[lb->count++] = index;
+}
 
 static void PUT_BIT(unsigned char *buf, int bit, int val)
 {
@@ -26,13 +70,16 @@ static void PUT_BIT(unsigned char *buf, int bit, int val)
 // max_search: max number of bytes to find
 // found_offset: returned offset found (0 if none found)
 // returns max length of matching stream (0 if none found)
-static int find_longest(const unsigned char *buf, int start_offset, int max_search, int *found_offset)
+static int find_longest(const unsigned char *buf, int start_offset, int max_search, int *found_offset, lookback *lkbk)
 {
    int best_length = 0;
    int best_offset = 0;
    int cur_length;
    int search_len;
-   int off, i;
+   int farthest, off, i;
+   int lb_idx;
+   const unsigned char first = buf[start_offset];
+   lookback *lb = &lkbk[first];
 
    // buf
    //  |    off        start                  max
@@ -42,7 +89,12 @@ static int find_longest(const unsigned char *buf, int start_offset, int max_sear
    //                       +cur_length
 
    // check at most the past 4096 values
-   for (off = MAX(start_offset - 4096, 0); off < start_offset; off++) {
+   farthest = MAX(start_offset - 4096, 0);
+   // find starting index
+   for (lb_idx = lb->start; lb_idx < lb->count && lb->indexes[lb_idx] < farthest; lb_idx++) {}
+   lb->start = lb_idx;
+   for ( ; lb_idx < lb->count && lb->indexes[lb_idx] < start_offset; lb_idx++) {
+      off = lb->indexes[lb_idx];
       // check at most requested max or up until start
       search_len = MIN(max_search, start_offset - off);
       for (i = 0; i < search_len; i++) {
@@ -154,6 +206,10 @@ int mio0_encode(const unsigned char *in, unsigned int length, unsigned char *out
    int bit_idx = 0;
    int comp_idx = 0;
    int uncomp_idx = 0;
+   lookback *lookbacks;
+
+   // initialize lookback buffer
+   lookbacks = lookback_init();
 
    // allocate some temporary buffers worst case size
    bit_buf = malloc((length + 7) / 8); // 1-bit/byte
@@ -163,6 +219,7 @@ int mio0_encode(const unsigned char *in, unsigned int length, unsigned char *out
 
    // encode data
    // special case for first byte
+   lookback_push(lookbacks, in[0], 0);
    uncomp_buf[uncomp_idx] = in[0];
    uncomp_idx += 1;
    bytes_proc += 1;
@@ -170,12 +227,14 @@ int mio0_encode(const unsigned char *in, unsigned int length, unsigned char *out
    while (bytes_proc < length) {
       int offset;
       int max_length = MIN(length - bytes_proc, 18);
-      int longest_match = find_longest(in, bytes_proc, max_length, &offset);
+      int longest_match = find_longest(in, bytes_proc, max_length, &offset, lookbacks);
+      // push current byte before checking next longer match
+      lookback_push(lookbacks, in[bytes_proc], bytes_proc);
       if (longest_match > 2) {
          int lookahead_offset;
          // lookahead to next byte to see if longer match
          int lookahead_length = MIN(length - bytes_proc - 1, 18);
-         int lookahead_match = find_longest(in, bytes_proc + 1, lookahead_length, &lookahead_offset);
+         int lookahead_match = find_longest(in, bytes_proc + 1, lookahead_length, &lookahead_offset, lookbacks);
          // better match found, use uncompressed + lookahead compressed
          if ((longest_match + 1) < lookahead_match) {
             // uncompressed byte
@@ -186,6 +245,11 @@ int mio0_encode(const unsigned char *in, unsigned int length, unsigned char *out
             longest_match = lookahead_match;
             offset = lookahead_offset;
             bit_idx++;
+            lookback_push(lookbacks, in[bytes_proc], bytes_proc);
+         }
+         // first byte already pushed above
+         for (int i = 1; i < longest_match; i++) {
+            lookback_push(lookbacks, in[bytes_proc + i], bytes_proc + i);
          }
          // compressed block
          comp_buf[comp_idx] = (((longest_match - 3) & 0x0F) << 4) |
@@ -226,8 +290,20 @@ int mio0_encode(const unsigned char *in, unsigned int length, unsigned char *out
    free(bit_buf);
    free(comp_buf);
    free(uncomp_buf);
+   lookback_free(lookbacks);
 
    return bytes_written;
+}
+
+static FILE *mio0_open_out_file(const char *out_file) {
+   if (strcmp(out_file, "-") == 0) {
+#if defined(_WIN32) || defined(_WIN64)
+      _setmode(_fileno(stdout), _O_BINARY);
+#endif
+      return stdout;
+   } else {
+      return fopen(out_file, "wb");
+   }
 }
 
 int mio0_decode_file(const char *in_file, unsigned long offset, const char *out_file)
@@ -278,7 +354,7 @@ int mio0_decode_file(const char *in_file, unsigned long offset, const char *out_
    }
 
    // open output file
-   out = fopen(out_file, "wb");
+   out = mio0_open_out_file(out_file);
    if (out == NULL) {
       ret_val = 4;
       goto free_all;
@@ -291,7 +367,9 @@ int mio0_decode_file(const char *in_file, unsigned long offset, const char *out_
    }
 
    // clean up
-   fclose(out);
+   if (out != stdout) {
+      fclose(out);
+   }
 free_all:
    if (out_buf) {
       free(out_buf);
@@ -341,7 +419,7 @@ int mio0_encode_file(const char *in_file, const char *out_file)
    bytes_encoded = mio0_encode(in_buf, file_size, out_buf);
 
    // open output file
-   out = fopen(out_file, "wb");
+   out = mio0_open_out_file(out_file);
    if (out == NULL) {
       ret_val = 4;
       goto free_all;
@@ -354,7 +432,9 @@ int mio0_encode_file(const char *in_file, const char *out_file)
    }
 
    // clean up
-   fclose(out);
+   if (out != stdout) {
+      fclose(out);
+   }
 free_all:
    if (out_buf) {
       free(out_buf);
@@ -398,7 +478,7 @@ static void print_usage(void)
          "\n"
          "File arguments:\n"
          " FILE        input file\n"
-         " [OUTPUT]    output file (default: FILE.out)\n");
+         " [OUTPUT]    output file (default: FILE.out), \"-\" for stdout\n");
    exit(1);
 }
 
@@ -412,7 +492,7 @@ static void parse_arguments(int argc, char *argv[], arg_config *config)
       exit(1);
    }
    for (i = 1; i < argc; i++) {
-      if (argv[i][0] == '-') {
+      if (argv[i][0] == '-' && argv[i][1] != '\0') {
          switch (argv[i][1]) {
             case 'c':
                config->compress = 1;
