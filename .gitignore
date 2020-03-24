@@ -36,6 +36,9 @@
 *.x86_64
 *.hex
 *.z64
+tools/mio0
+tools/n64cksum
+tools/n64graphics
 
 # Debug files
 *.dSYM/
