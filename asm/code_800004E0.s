@@ -10,46 +10,6 @@
 
 .section .text, "ax"
 
-glabel CreateThread
-/* 001050 80000450 27BDFFE0 */  addiu $sp, $sp, -0x20
-/* 001054 80000454 AFBF001C */  sw    $ra, 0x1c($sp)
-/* 001058 80000458 AC800000 */  sw    $zero, ($a0)
-/* 00105C 8000045C AC800008 */  sw    $zero, 8($a0)
-/* 001060 80000460 8FAF0034 */  lw    $t7, 0x34($sp)
-/* 001064 80000464 8FAE0030 */  lw    $t6, 0x30($sp)
-/* 001068 80000468 AFAF0014 */  sw    $t7, 0x14($sp)
-/* 00106C 8000046C 0C032FDC */  jal   osCreateThread
-/* 001070 80000470 AFAE0010 */   sw    $t6, 0x10($sp)
-/* 001074 80000474 8FBF001C */  lw    $ra, 0x1c($sp)
-/* 001078 80000478 27BD0020 */  addiu $sp, $sp, 0x20
-/* 00107C 8000047C 03E00008 */  jr    $ra
-/* 001080 80000480 00000000 */   nop   
-
-glabel Main
-/* 001084 80000484 27BDFFE0 */  addiu $sp, $sp, -0x20
-/* 001088 80000488 AFBF001C */  sw    $ra, 0x1c($sp)
-/* 00108C 8000048C 0C033030 */  jal   osInitialize
-/* 001090 80000490 00000000 */   nop   
-/* 001094 80000494 3C0E8015 */  lui   $t6, %hi(D_80154670) # $t6, 0x8015
-/* 001098 80000498 25CE4670 */  addiu $t6, %lo(D_80154670) # addiu $t6, $t6, 0x4670
-/* 00109C 8000049C 3C048015 */  lui   $a0, %hi(D_801524C0) # $a0, 0x8015
-/* 0010A0 800004A0 3C068000 */  lui   $a2, %hi(Thread1_Idle) # $a2, 0x8000
-/* 0010A4 800004A4 240F0064 */  li    $t7, 100
-/* 0010A8 800004A8 AFAF0014 */  sw    $t7, 0x14($sp)
-/* 0010AC 800004AC 24C604E0 */  addiu $a2, %lo(Thread1_Idle) # addiu $a2, $a2, 0x4e0
-/* 0010B0 800004B0 248424C0 */  addiu $a0, %lo(D_801524C0) # addiu $a0, $a0, 0x24c0
-/* 0010B4 800004B4 AFAE0010 */  sw    $t6, 0x10($sp)
-/* 0010B8 800004B8 24050001 */  li    $a1, 1
-/* 0010BC 800004BC 0C000114 */  jal   CreateThread
-/* 0010C0 800004C0 00003825 */   move  $a3, $zero
-/* 0010C4 800004C4 3C048015 */  lui   $a0, %hi(D_801524C0) # $a0, 0x8015
-/* 0010C8 800004C8 0C0330D8 */  jal   osStartThread
-/* 0010CC 800004CC 248424C0 */   addiu $a0, %lo(D_801524C0) # addiu $a0, $a0, 0x24c0
-/* 0010D0 800004D0 8FBF001C */  lw    $ra, 0x1c($sp)
-/* 0010D4 800004D4 27BD0020 */  addiu $sp, $sp, 0x20
-/* 0010D8 800004D8 03E00008 */  jr    $ra
-/* 0010DC 800004DC 00000000 */   nop   
-
 glabel Thread1_Idle
 /* 0010E0 800004E0 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0010E4 800004E4 AFBF001C */  sw    $ra, 0x1c($sp)
