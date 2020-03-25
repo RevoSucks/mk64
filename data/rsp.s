@@ -8,7 +8,7 @@
 
 .include "macros.inc"
 
-.section .text, "ax"
+.section .data
 
 glabel rsp.boot
 .incbin "bin/mk64.u.0D9B70.rsp.boot.bin"

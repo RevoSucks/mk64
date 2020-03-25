@@ -10,6 +10,93 @@
 
 .section .text, "ax"
 
+glabel osCreateThread
+/* 0CCB70 800CBF70 27BDFFD8 */  addiu $sp, $sp, -0x28
+/* 0CCB74 800CBF74 AFA40028 */  sw    $a0, 0x28($sp)
+/* 0CCB78 800CBF78 AFA5002C */  sw    $a1, 0x2c($sp)
+/* 0CCB7C 800CBF7C 8FAE002C */  lw    $t6, 0x2c($sp)
+/* 0CCB80 800CBF80 8FAF0028 */  lw    $t7, 0x28($sp)
+/* 0CCB84 800CBF84 AFBF001C */  sw    $ra, 0x1c($sp)
+/* 0CCB88 800CBF88 AFA60030 */  sw    $a2, 0x30($sp)
+/* 0CCB8C 800CBF8C AFA70034 */  sw    $a3, 0x34($sp)
+/* 0CCB90 800CBF90 AFB00018 */  sw    $s0, 0x18($sp)
+/* 0CCB94 800CBF94 ADEE0014 */  sw    $t6, 0x14($t7)
+/* 0CCB98 800CBF98 8FB90028 */  lw    $t9, 0x28($sp)
+/* 0CCB9C 800CBF9C 8FB8003C */  lw    $t8, 0x3c($sp)
+/* 0CCBA0 800CBFA0 AF380004 */  sw    $t8, 4($t9)
+/* 0CCBA4 800CBFA4 8FA80028 */  lw    $t0, 0x28($sp)
+/* 0CCBA8 800CBFA8 AD000000 */  sw    $zero, ($t0)
+/* 0CCBAC 800CBFAC 8FA90028 */  lw    $t1, 0x28($sp)
+/* 0CCBB0 800CBFB0 AD200008 */  sw    $zero, 8($t1)
+/* 0CCBB4 800CBFB4 8FAB0028 */  lw    $t3, 0x28($sp)
+/* 0CCBB8 800CBFB8 8FAA0030 */  lw    $t2, 0x30($sp)
+/* 0CCBBC 800CBFBC AD6A011C */  sw    $t2, 0x11c($t3)
+/* 0CCBC0 800CBFC0 8FAC0034 */  lw    $t4, 0x34($sp)
+/* 0CCBC4 800CBFC4 8FAD0028 */  lw    $t5, 0x28($sp)
+/* 0CCBC8 800CBFC8 01807825 */  move  $t7, $t4
+/* 0CCBCC 800CBFCC 000C77C3 */  sra   $t6, $t4, 0x1f
+/* 0CCBD0 800CBFD0 ADAE0038 */  sw    $t6, 0x38($t5)
+/* 0CCBD4 800CBFD4 ADAF003C */  sw    $t7, 0x3c($t5)
+/* 0CCBD8 800CBFD8 8FB80038 */  lw    $t8, 0x38($sp)
+/* 0CCBDC 800CBFDC 8FB90028 */  lw    $t9, 0x28($sp)
+/* 0CCBE0 800CBFE0 3C0C800D */  lui   $t4, %hi(__osCleanupThread) # $t4, 0x800d
+/* 0CCBE4 800CBFE4 03004825 */  move  $t1, $t8
+/* 0CCBE8 800CBFE8 2D210010 */  sltiu $at, $t1, 0x10
+/* 0CCBEC 800CBFEC 001847C3 */  sra   $t0, $t8, 0x1f
+/* 0CCBF0 800CBFF0 01015023 */  subu  $t2, $t0, $at
+/* 0CCBF4 800CBFF4 252BFFF0 */  addiu $t3, $t1, -0x10
+/* 0CCBF8 800CBFF8 AF2B00F4 */  sw    $t3, 0xf4($t9)
+/* 0CCBFC 800CBFFC AF2A00F0 */  sw    $t2, 0xf0($t9)
+/* 0CCC00 800CC000 8FAD0028 */  lw    $t5, 0x28($sp)
+/* 0CCC04 800CC004 258C1AA0 */  addiu $t4, %lo(__osCleanupThread) # addiu $t4, $t4, 0x1aa0
+/* 0CCC08 800CC008 01807825 */  move  $t7, $t4
+/* 0CCC0C 800CC00C 000C77C3 */  sra   $t6, $t4, 0x1f
+/* 0CCC10 800CC010 ADAE0100 */  sw    $t6, 0x100($t5)
+/* 0CCC14 800CC014 ADAF0104 */  sw    $t7, 0x104($t5)
+/* 0CCC18 800CC018 8FA90028 */  lw    $t1, 0x28($sp)
+/* 0CCC1C 800CC01C 3C18003F */  lui   $t8, (0x003FFF01 >> 16) # lui $t8, 0x3f
+/* 0CCC20 800CC020 3718FF01 */  ori   $t8, (0x003FFF01 & 0xFFFF) # ori $t8, $t8, 0xff01
+/* 0CCC24 800CC024 AFB80020 */  sw    $t8, 0x20($sp)
+/* 0CCC28 800CC028 3408FF03 */  li    $t0, 65283
+/* 0CCC2C 800CC02C AD280118 */  sw    $t0, 0x118($t1)
+/* 0CCC30 800CC030 8FAA0020 */  lw    $t2, 0x20($sp)
+/* 0CCC34 800CC034 8FAC0028 */  lw    $t4, 0x28($sp)
+/* 0CCC38 800CC038 3C01003F */  lui   $at, 0x3f
+/* 0CCC3C 800CC03C 01415824 */  and   $t3, $t2, $at
+/* 0CCC40 800CC040 000BCC02 */  srl   $t9, $t3, 0x10
+/* 0CCC44 800CC044 AD990128 */  sw    $t9, 0x128($t4)
+/* 0CCC48 800CC048 8FAF0028 */  lw    $t7, 0x28($sp)
+/* 0CCC4C 800CC04C 3C0E0100 */  lui   $t6, (0x01000800 >> 16) # lui $t6, 0x100
+/* 0CCC50 800CC050 35CE0800 */  ori   $t6, (0x01000800 & 0xFFFF) # ori $t6, $t6, 0x800
+/* 0CCC54 800CC054 ADEE012C */  sw    $t6, 0x12c($t7)
+/* 0CCC58 800CC058 8FAD0028 */  lw    $t5, 0x28($sp)
+/* 0CCC5C 800CC05C 24180001 */  li    $t8, 1
+/* 0CCC60 800CC060 ADA00018 */  sw    $zero, 0x18($t5)
+/* 0CCC64 800CC064 8FA80028 */  lw    $t0, 0x28($sp)
+/* 0CCC68 800CC068 A5180010 */  sh    $t8, 0x10($t0)
+/* 0CCC6C 800CC06C 8FA90028 */  lw    $t1, 0x28($sp)
+/* 0CCC70 800CC070 0C0346AC */  jal   __osDisableInt
+/* 0CCC74 800CC074 A5200012 */   sh    $zero, 0x12($t1)
+/* 0CCC78 800CC078 3C0A800F */  lui   $t2, %hi(D_800EB3AC) # $t2, 0x800f
+/* 0CCC7C 800CC07C 8D4AB3AC */  lw    $t2, %lo(D_800EB3AC)($t2)
+/* 0CCC80 800CC080 8FAB0028 */  lw    $t3, 0x28($sp)
+/* 0CCC84 800CC084 00408025 */  move  $s0, $v0
+/* 0CCC88 800CC088 3C01800F */  lui   $at, %hi(D_800EB3AC) # $at, 0x800f
+/* 0CCC8C 800CC08C AD6A000C */  sw    $t2, 0xc($t3)
+/* 0CCC90 800CC090 8FB90028 */  lw    $t9, 0x28($sp)
+/* 0CCC94 800CC094 02002025 */  move  $a0, $s0
+/* 0CCC98 800CC098 0C0346B4 */  jal   __osRestoreInt
+/* 0CCC9C 800CC09C AC39B3AC */   sw    $t9, %lo(D_800EB3AC)($at)
+/* 0CCCA0 800CC0A0 8FBF001C */  lw    $ra, 0x1c($sp)
+/* 0CCCA4 800CC0A4 8FB00018 */  lw    $s0, 0x18($sp)
+/* 0CCCA8 800CC0A8 27BD0028 */  addiu $sp, $sp, 0x28
+/* 0CCCAC 800CC0AC 03E00008 */  jr    $ra
+/* 0CCCB0 800CC0B0 00000000 */   nop   
+
+/* 0CCCB4 800CC0B4 00000000 */  nop   
+/* 0CCCB8 800CC0B8 00000000 */  nop   
+/* 0CCCBC 800CC0BC 00000000 */  nop   
+
 glabel osInitialize
 /* 0CCCC0 800CC0C0 27BDFFC0 */  addiu $sp, $sp, -0x40
 /* 0CCCC4 800CC0C4 AFBF001C */  sw    $ra, 0x1c($sp)

@@ -7,7 +7,7 @@ BUILD_DIR = build
 
 # Directories containing source files
 SRC_DIRS := src src/libultra
-ASM_DIRS := asm data bin
+ASM_DIRS := asm data bin asm/audio
 
 ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
 

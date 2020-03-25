@@ -42,26 +42,40 @@ SECTIONS
       build/asm/code_8008C1D0.o(.text);
       build/asm/code_80091750.o(.text);
       build/asm/code_800AF9B0.o(.text);
-      build/asm/code_800B6BF0.o(.text);
-      build/asm/code_800B8DE0.o(.text);
-      build/asm/code_800BAA80.o(.text);
-      build/asm/code_800BDE50.o(.text);
-      build/asm/code_800BE8F0.o(.text);
-      build/asm/code_800CB330.o(.text);
+      build/asm/audio/synthesis.o(.text);
+      build/asm/audio/heap.o(.text);
+      build/asm/audio/load.o(.text);
+      build/asm/audio/playback.o(.text);
+      build/asm/audio/effects.o(.text);
+      build/asm/audio/seqplayer.o(.text);
+      build/asm/audio/external.o(.text);
+      build/asm/audio/port_eu.o(.text);
       build/asm/libultra.o(.text);
-      build/data/rsp.o(.text);
+      build/data/rsp.o(.data);
    }
 
    /* 0x8028DF00 0F7510-121DA0 [2A890] */
    .text8028DF00 0x8028DF00 : AT(0x0F7510) {
       build/asm/code_8028DF00.o(.text);
+      build/asm/code_80290C20.o(.text);
+      build/asm/code_80296A50.o(.text);
+      build/asm/code_802A3730.o(.text);
+      build/asm/code_802A7B70.o(.text);
+      build/asm/code_802B0210.o(.text);
+      build/asm/code_802B4F60.o(.text);
+      build/data/data_121DA0.o(.data);
    }
 
    /* 0x80280000 123640-128480 [4E40] */
    .text80280000 0x80280000 : AT(0x123640) {
       build/asm/code_80280000.o(.text);
-	  build/data/game_data.o(.assets);
-	  build/data/sound_data.o(.assets);
+      build/asm/code_80280650.o(.text);
+      build/asm/code_80281610.o(.text);
+      build/asm/code_80281780.o(.text);
+      build/asm/code_80281C40.o(.text);
+      build/asm/code_80281FA0.o(.text);
+      build/data/game_data.o(.assets);
+      build/data/sound_data.o(.assets);
    }
 
    /* Discard everything not specifically mentioned above. */
