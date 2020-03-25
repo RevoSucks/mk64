@@ -9,8 +9,18 @@ BUILD_DIR = build
 SRC_DIRS := src src/libultra
 ASM_DIRS := asm data bin
 
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
+
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE = 1
+
+# Make tools if out of date
+DUMMY != make -s -C tools >&2 || echo FAIL
+ifeq ($(DUMMY),FAIL)
+  $(error Failed to build tools)
+endif
+
+DUMMY != mkdir -p $(ALL_DIRS)
 
 TARGET = mk64.u
 LD_SCRIPT = $(TARGET).ld
